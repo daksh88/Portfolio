@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .navbar {
+      background-color: #1f1f1f;
+    }
+    .navbar-brand {
+      color: #00ff9d;
+    }
+    .content {
+  display: flex;
+  padding: 40px; /* You can reduce this value if you want less space overall */
+  margin-left: 20px; /* Adjust this to reduce space on the left */
+}
+
+.card-custom {
+  width: 1000px; /* Maintain the width you want */
+  padding: 30px; /* Adjust padding as needed */
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: inherit;
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+  margin-right: 10px; /* Keep some space on the right */
+  margin-left: 0; /* Set to 0 to remove left margin */
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3px );
+-webkit-backdrop-filter: blur( 3px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+    .photo-container img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
+      border: 5px solid #00ff9d;
+    }
+    .description {
+      font-size: 16px;
+      color: #cccccc;
+    }
+    .sections {
+      flex-grow: 1;
+      margin-left: 40px;
+    }
+    .card-section-combined {
+      background-color: #1f1f1f;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin-bottom: 40px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00ff9d;
+    }
+    .section p {
+      font-size: 16px;
+      color: #cccccc; /* Description color */
+    }
+    .skills ul, .experience ul, .education ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .skills ul li, .experience ul li {
+      font-size: 18px;
+      color: #cccccc; /* List item color */
+    }
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #00ff9d;
+    }
+    .certification-card {
+  background-color: #ffffff; /* Change background color to white */
+  color: #000000; /* Set text color to black for better contrast */
+  border-radius: 10px; /* Keep the border-radius for the card */
+  margin-bottom: 20px;
+  position: relative;
+  display: flex; /* Use flexbox */
+  flex-direction: column; /* Arrange children in a column */
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+  text-align: center; /* Center text */
+  height: 250px; /* Set a fixed height for the card */
+}
+
+
+    .certification-card img, .card img {
+      width: 100%;
+      height: 150px; /* Set a fixed height for all images */
+      object-fit: cover; /* This will cover the area without distorting the aspect ratio */
+    }
+    .card, .certification-card {
+      height: 250px; /* Set a fixed height for the card */
+    }
+    .certification-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .certification-card a {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+    a {
+  text-decoration: none; /* Remove underline from links */
+}
+
+.card, .certification-card {
+  transition: transform 0.3s; /* Smooth transition effect */
+}
+
+.card:hover, .certification-card:hover {
+  transform: scale(1.05); /* Scale up the card on hover */
+}
+.certification-card a {
+  color: #ffffff; /* Set the text color to white for links */
+}
+
+.certification-card a:hover {
+  color: #00ff9d; /* Change the text color on hover to match the theme */
+}
+.contact-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .contact-icon .phone-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    color: #00ff9d;
+  }
+
+  .contact-icon:hover .fas {
+    opacity: 0;
+  }
+
+  .contact-icon:hover .phone-number {
+    display: inline-block;
+  }
+ 
+  .contact-icon:hover::after {
+    height: 25px;
+    opacity: 1;
+    top: 35px;
+  }
+  @media (max-width: 768px) {
+  .content {
+    flex-direction: column; /* Stack profile card and sections vertically */
+    padding: 20px; /* Reduce padding for smaller screens */
+    margin-left: 0; /* Remove left margin */
+  }
+
+  .card-custom {
+    width: 100%; /* Full width on smaller screens */
+    margin-right: 0; /* Remove right margin */
+  }
+
+  .sections {
+    margin-left: 0; /* Remove left margin for sections */
+    margin-top: 20px; /* Add some spacing above sections */
+  }
+
+  .skills ul, .experience ul, .education ul {
+    font-size: 16px; /* Smaller font size for lists */
+  }
+
+  .section h2 {
+    font-size: 24px; /* Smaller heading size */
+  }
+
+  .certification-card img, .card img {
+    height: 120px; /* Reduce height of images in cards */
+  }
+
+  .certification-card, .card {
+    height: auto; /* Allow height to adjust automatically */
+  }
+
+  .description {
+    font-size: 14px; /* Smaller description font size */
+  }
+
+  .navbar {
+    padding: 10px; /* Reduce navbar padding */
+  }
+
+  .contact-icon .phone-number {
+    font-size: 14px; /* Smaller font size for phone number */
+  }
+}
+
+
+
+
+  </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="#">My Portfolio</a>
+      
+          <!-- Right-aligned icons in navbar -->
+          <div class="d-flex align-items-center">
+            <!-- Mail Icon with Hover Effect -->
+            <a href="mailto:dakshnautiyal88@gmail.com" class="me-3 text-decoration-none text-white contact-icon email-icon">
+              <i class="fas fa-envelope"></i>
+            </a>
+      
+            <!-- Contact Icon with Hover Effect -->
+            <a href="#" class="me-3 text-decoration-none text-white contact-icon phone-icon">
+              <i class="fas fa-phone-alt"></i>
+              <span class="phone-number d-none">+91-1234567890</span>
+            </a>
+      
+            <!-- LinkedIn Icon with Hover Effect -->
+            <a href="https://www.linkedin.com/in/dakshnautiyal/" class="me-3 text-decoration-none text-white contact-icon linkedin-icon" target="_blank">
+              <i class="fab fa-linkedin"></i>
+            </a>
+    
+            <!-- GitHub Icon with Hover Effect -->
+            <a href="https://github.com/daksh88" class="text-decoration-none text-white contact-icon github-icon" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+            
+          </div>
+        </div>
+    </nav>
+  
+  
+
+  <!-- Main Content -->
+  <div class="content container">
+    <!-- Profile Card Section -->
+    <div class="card-custom">
+      <div class="photo-container">
+        <img src="me.jpg" alt="Your Photo">
+      </div>
+      <h3>Daksh Nautiyal</h3>
+      <p class="description">I'm not addicted to tech; I just need a constant stream of Wi-Fi, gadgets, and zero human interaction to survive.</p>
+    </div>
+
+    <!-- Combined Sections: Skills, Experience, Education -->
+    <div class="sections">
+      <div class="card-section-combined">
+        <!-- Skills Section -->
+        <section class="section skills">
+          <h2><i class="fas fa-laptop-code icon"></i>Skills</h2>
+          <ul>
+            <li>HTML|CSS|Javascript|Bootstrap|React.js</li>
+            <li>Frontend Development</li>
+            <li>C|C++|Java</li>
+            <li>Android Development</li>
+            <li>Team Management</li>
+            <li>Communication</li>
+          </ul>
+        </section>
+
+        <!-- Experience Section -->
+        <section class="section experience">
+          <h2><i class="fas fa-briefcase icon"></i>Experience</h2>
+          <ul>
+            <li><strong>Business Development Manager - AIESEC in Dehradun:</strong> Managed workshops and client relationships, leading business growth.</li>
+            <li><strong>Team Lead, Customer Experience - AIESEC in Dehradun:</strong> Led a team of 5 members, ensuring quality service for international clients.</li>
+          </ul>
+        </section>
+
+        <!-- Education Section -->
+        <section class="section education">
+          <h2><i class="fas fa-graduation-cap icon"></i>Education</h2>
+          <p><strong>BTech in Computer Science & Engineering</strong> - Graphic Era Hill University (2022-2026)</p>
+          <p><strong>High School & Intermediate</strong> - St Jude's School</p>
+        </section>
+      </div>
+
+      <!-- Projects Section -->
+      <section class="section projects-section">
+        <h2>Projects</h2>
+        <div class="row">
+          <div class="col-md-4">
+            <a href="https://daksh88.github.io/25-5-Clock/" target="_blank">
+              <div class="card">
+                <img src="https://i.ytimg.com/vi/2IvN0g61Ujo/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAhs-hwaYYTaGPdfesXmD4m7vGjfA" class="card-img-top" alt="Project 1">
+                <div class="card-body">
+                  <h5 class="card-title">25+5 Clock</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="https://daksh88.github.io/Random-Quote-Generator/" target="_blank">
+              <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQlhv8D1_tRJftO3PzyYa1cI038CGMh2aI4Q&s" class="card-img-top" alt="Project 2">
+                <div class="card-body">
+                  <h5 class="card-title">Random Quote Generator</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+          <div class="col-md-4">
+            <a href="https://daksh88.github.io/Drum-Machine/" target="_blank">
+              <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPIee32595jY8jYJKe3MJUvJ9VPsSmb_uUhw&s" class="card-img-top" alt="Project 3">
+                <div class="card-body">
+                  <h5 class="card-title">Drum Machine</h5>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Certifications Section -->
+      <!-- Certifications Section -->
+<section class="section certification-section">
+    <h2>Certifications</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <a href="https://www.freecodecamp.org/certification/daksh01/responsive-web-design" target="_blank">
+          <div class="certification-card">
+            <img src="certificate1.png" class="card-img-top" alt="Certificate 1">
+            <div class="card-body">
+              <h5 class="card-title">Responsive Web Design</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://www.freecodecamp.org/certification/daksh01/front-end-development-libraries" target="_blank">
+          <div class="certification-card">
+            <img src="certificate2.png" class="card-img-top" alt="Certificate 2">
+            <div class="card-body">
+              <h5 class="card-title">Frontend Development Libraries</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://www.freecodecamp.org/certification/daksh01/javascript-algorithms-and-data-structures" target="_blank">
+          <div class="certification-card">
+            <img src="certificate3.png" class="card-img-top" alt="Certificate 3">
+            <div class="card-body">
+              <h5 class="card-title">Javascript Algorithms and Data Structures</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+    <!-- Second Set of Certification Cards -->
+    <div class="row">
+      <div class="col-md-4">
+        <a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://archive.nptel.ac.in/content/noc/NOC23/SEM2/Ecertificates/106/noc23-cs74/Course/NPTEL23CS74S83420116620142916.pdf" target="_blank">
+          <div class="certification-card">
+            <img src="certificate4.png" class="card-img-top" alt="Certificate 4">
+            <div class="card-body">
+              <h5 class="card-title">Programming in Java</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="https://in.docs.wps.com/module/common/loadPlatform/?sid=sIMjsmL84rvPftgY&v=v2" target="_blank">
+          <div class="certification-card">
+            <img src="certificate5.png" class="card-img-top" alt="Certificate 5">
+            <div class="card-body">
+              <h5 class="card-title">CCNA Introduction to Networks</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-md-4">
+        <a href="chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://storage.googleapis.com/swayam-node2-production_certificates/examform/certificates/ns_nou24_ge25/2415210021702_nou24_ge25.pdf?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=sa-google-drive%40swayam-node2-production.iam.gserviceaccount.com%2F20241011%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20241011T171307Z&X-Goog-Expires=300&X-Goog-SignedHeaders=host&X-Goog-Signature=0aeab3c18355fd5954109fde29627cb80e75abccbc8a7661478b482440ece7298f69eaef0d6647cc2c5ff166281bed22a40b6d883d6c1716f40ab10e4925e24f71f9040d62b0294fa81b87e0439487ac4056aa0e73482ab3d54c35354708f8adbeb4c595318bfc469152bd601bce3519548ff6de6740c019da3357c23aef633b5826628e78b3dcd2c40c277031e378f52b35d3e8312a9a143a44818d08bc3e5810183d9d9d846afd3484b2dd0c2ef184364db3a2b3fbe3802a1fd3e9f688b4fc4aadb5f12e5f89ed66cdf418ddc70a107b61088a1d8bfa54402f5f6610a157137f601fcbd465264ef1b2c7ab3b8b48b9986364a43614e7327c212e5a7a32611f" target="_blank">
+          <div class="certification-card">
+            <img src="certificate6.png" class="card-img-top" alt="Certificate 6">
+            <div class="card-body">
+              <h5 class="card-title">Android Development</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Extra Curricular Activities Section -->
+<section class="section activities">
+    <div class="card-section-combined">
+    <h2><i class="fas fa-user-graduate icon"></i>Extra Curricular Activities</h2>
+    <ul>
+      <li><strong>Team Lead</strong> - Hackaholic Hackathon(24hrs), Graphic Era Hill University</li>
+      <li><strong>OC Logistics</strong> - Global Village 2023, AIESEC in Dehradun</li>
+      <li><strong>Member of Partnership Development</strong> - Global Goal Runs 2023, AIESEC in Dehradun</li>
+      <li><strong>Head of Partnership Development</strong> - Youth Speak Forum 2024, AIESEC in Dehradun</li>
+      <li><strong>Core Committee President</strong> - Global Village 2024, AIESEC in Dehradun</li>
+    </ul>
+  </section>
+</div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
