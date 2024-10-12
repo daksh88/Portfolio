@@ -1,0 +1,214 @@
+body {
+      font-family: 'Courier New', Courier, monospace;
+      background-color: #121212;
+      color: #ffffff;
+    }
+    .navbar {
+      background-color: #1f1f1f;
+    }
+    .navbar-brand {
+      color: #00ff9d;
+    }
+    .content {
+  display: flex;
+  padding: 40px; 
+  margin-left: 20px; 
+}
+
+.card-custom {
+  width: 1000px; 
+  padding: 30px; 
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: inherit;
+  position: sticky;
+  top: 40px;
+  height: fit-content;
+  margin-right: 10px; 
+  margin-left: 0; 
+  background: rgba( 255, 255, 255, 0.25 );
+box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 3px );
+-webkit-backdrop-filter: blur( 3px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
+
+
+    .photo-container img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      margin-bottom: 20px;
+      border: 5px solid #00ff9d;
+    }
+    .description {
+      font-size: 16px;
+      color: #cccccc;
+    }
+    .sections {
+      flex-grow: 1;
+      margin-left: 40px;
+    }
+    .card-section-combined {
+      background-color: #1f1f1f;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      margin-bottom: 40px;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    .section h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #00ff9d;
+    }
+    .section p {
+      font-size: 16px;
+      color: #cccccc; 
+    }
+    .skills ul, .experience ul, .education ul {
+      list-style: none;
+      padding-left: 0;
+    }
+    .skills ul li, .experience ul li {
+      font-size: 18px;
+      color: #cccccc; 
+    }
+    .icon {
+      font-size: 24px;
+      margin-right: 10px;
+      color: #00ff9d;
+    }
+    .certification-card {
+  background-color: #ffffff; 
+  color: #000000; 
+  border-radius: 10px; 
+  margin-bottom: 20px;
+  position: relative;
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  text-align: center; 
+  height: 250px; 
+}
+
+
+    .certification-card img, .card img {
+      width: 100%;
+      height: 150px; 
+      object-fit: cover; 
+    }
+    .card, .certification-card {
+      height: 250px; 
+    }
+    .certification-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .certification-card a {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      text-decoration: none;
+    }
+    a {
+  text-decoration: none; 
+}
+
+.card, .certification-card {
+  transition: transform 0.3s; 
+}
+
+.card:hover, .certification-card:hover {
+  transform: scale(1.05); 
+}
+.certification-card a {
+  color: #ffffff; 
+}
+
+.certification-card a:hover {
+  color: #00ff9d; 
+}
+.contact-icon {
+    position: relative;
+    display: inline-block;
+  }
+
+  .contact-icon .phone-number {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    color: #00ff9d;
+  }
+
+  .contact-icon:hover .fas {
+    opacity: 0;
+  }
+
+  .contact-icon:hover .phone-number {
+    display: inline-block;
+  }
+ 
+  .contact-icon:hover::after {
+    height: 25px;
+    opacity: 1;
+    top: 35px;
+  }
+  @media (max-width: 768px) {
+  .content {
+    flex-direction: column; 
+    padding: 20px; 
+    margin-left: 0;
+  }
+
+  .card-custom {
+    width: 100%; 
+    margin-right: 0; 
+  }
+
+  .sections {
+    margin-left: 0; 
+    margin-top: 20px;
+  }
+
+  .skills ul, .experience ul, .education ul {
+    font-size: 16px;
+  }
+
+  .section h2 {
+    font-size: 24px; 
+  }
+
+  .certification-card img, .card img {
+    height: 120px; 
+  }
+
+  .certification-card, .card {
+    height: auto; 
+  }
+
+  .description {
+    font-size: 14px; 
+  }
+
+  .navbar {
+    padding: 10px; 
+  }
+
+  .contact-icon .phone-number {
+    font-size: 14px; 
+  }
+}
