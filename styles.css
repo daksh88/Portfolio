@@ -235,7 +235,7 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   
   .carousel-item {
     transition: opacity 1s ease-in-out; 
-    height: 100px;
+    height: auto;
     position: relative;
     overflow: hidden;
   }
@@ -251,7 +251,14 @@ border: 1px solid rgba( 255, 255, 255, 0.18 );
   .carousel-item {
     opacity: 0; 
   }
-
+@media (max-width: 768px) {
+    .carousel-item {
+        height: auto; /* Adjust this in case you have a fixed height for mobile */
+    }
+    .carousel-inner {
+        height: auto; /* Set this to auto to accommodate the images */
+    }
+}
 
   
 }
