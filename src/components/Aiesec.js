@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-import { Container, Typography, Box, Grid, Card, CardContent } from '@mui/material';
-import { Carousel } from 'react-responsive-carousel';
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import React from 'react';
+import { Container, Typography, Box, Grid, Card, CardContent, Paper } from '@mui/material';
 
 const Aiesec = () => {
   const experiences = [
@@ -17,11 +15,12 @@ const Aiesec = () => {
     }
   ];
 
-  const [images] = useState([
-    '/image1.jpg',
-    '/image2.jpg',
-    '/image3.jpg'
-  ]);
+  const aiesecImages = [
+    { title: 'Experience 1', image: 'public/slide1.jpg', description: 'Description 1' },
+    { title: 'Experience 2', image: 'public/slide2.jpg', description: 'Description 2' },
+    { title: 'Experience 3', image: 'public/slide3.jpg', description: 'Description 3' },
+    { title: 'Experience 4', image: 'public/slide4.jpg', description: 'Description 4' }
+  ];
 
   return (
     <Container>
@@ -41,20 +40,19 @@ const Aiesec = () => {
         </Grid>
         <Box sx={{ textAlign: 'center', mt: 4 }}>
           <Typography variant="h4" gutterBottom>Gallery</Typography>
-          <Carousel showArrows={true} autoPlay infiniteLoop>
-            {images.map((image, index) => (
-              <div key={index}>
-                <img src={image} alt={`Slideshow Image ${index + 1}`} style={{
-                  width: '100%',
-                  height: 'auto',
-                  borderRadius: '10px',
-                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)',
-                  transition: 'transform 0.5s ease',
-                  '&:hover': { transform: 'scale(1.05)' }
-                }} />
-              </div>
+          <Grid container spacing={2}>
+            {aiesecImages.map((experience, index) => (
+              <Grid item xs={6} sm={3} key={index}>
+                <Paper elevation={3} sx={{ padding: 2, textAlign: 'center' }}>
+                  <img src={experience.image} alt={experience.title} style={{ width: '100%', height: 'auto', borderRadius: '8px' }} />
+                  <Typography variant="h6" sx={{ marginTop: 1 }}>
+                    {experience.title}
+                  </Typography>
+                  <p>{experience.description}</p>
+                </Paper>
+              </Grid>
             ))}
-          </Carousel>
+          </Grid>
         </Box>
       </Box>
     </Container>

@@ -21,7 +21,7 @@ function Home() {
   const [projectStartIndex, setProjectStartIndex] = useState(0);
   const [certStartIndex, setCertStartIndex] = useState(0);
   const [aiesecIndex, setAiesecIndex] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(false);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const canvasRef = useRef(null);
   const autoPlayRef = useRef();
@@ -213,12 +213,12 @@ function Home() {
     }
   ];
 
-  const aiesecImages = [
-    {
+  const [aiesecImages, setAiesecImages] = useState([
+   {
       image: `${process.env.PUBLIC_URL}/slide1.jpg`,
       alt: 'AIESEC Experience 1',
       description: 'Global Goal Runs'
-    },
+    }, 
     {
       image: `${process.env.PUBLIC_URL}/slide2.jpg`,
       alt: 'AIESEC Experience 2',
@@ -238,8 +238,95 @@ function Home() {
       image: `${process.env.PUBLIC_URL}/slide5.jpg`,
       alt: 'AIESEC Experience 5',
       description: 'Global Village 2024'
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/slide6.jpg`,
+      alt: 'AIESEC Experience 6',
+      description: 'Trekkers Local Conference'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide7.jpg`,
+      alt: 'AIESEC Experience 7',
+      description: 'IGV MB 2024'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide8.jpg`,
+      alt: 'AIESEC Experience 8',
+      description: 'Global Village OC 2023'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide9.jpg`,
+      alt: 'AIESEC Experience 9',
+      description: 'Global Village 2023'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide10.jpg`,
+      alt: 'AIESEC Experience 10',
+      description: 'Management Body Meet 2023'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide11.jpg`,
+      alt: 'AIESEC Experience 11',
+      description: 'GGR 2023 Recognition'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide12.jpg`,
+      alt: 'AIESEC Experience 12',
+      description: 'Business Development Manager 2023'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide14.jpg`,
+      alt: 'AIESEC Experience 14',
+      description: 'MB Andaaz 2023'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide15.jpg`,
+      alt: 'AIESEC Experience 15',
+      description: 'IGV CX Manager 2024'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide16.jpg`,
+      alt: 'AIESEC Experience 16',
+      description: 'GV 2024 EB x CC'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide17.jpg`,
+      alt: 'AIESEC Experience 17',
+      description: 'GV 2024 EBC x CC'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide18.jpg`,
+      alt: 'AIESEC Experience 18',
+      description: 'GV 2024 CCP x Interns'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide19.jpg`,
+      alt: 'AIESEC Experience 19',
+      description: 'Business Development Manager 2024'
+    },    {
+      image: `${process.env.PUBLIC_URL}/slide20.jpg`,
+      alt: 'AIESEC Experience 20',
+      description: 'Balkalaakar 2024'
+    }, 
+    {
+      image: `${process.env.PUBLIC_URL}/slide21.jpg`,
+      alt: 'AIESEC Experience 21',
+      description: 'Global Village OC 2024'
     }
-  ];
+  ]);
+  const [currentAiesecIndex, setCurrentAiesecIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isAutoPlaying) {
+        setCurrentAiesecIndex((prevIndex) => (prevIndex + 1) % aiesecImages.length);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const currentAiesecImage = aiesecImages[currentAiesecIndex];
 
   const visibleCertificates = certificates.slice(certStartIndex, certStartIndex + 3);
   const totalSlides = Math.ceil(certificates.length / 3);
@@ -759,81 +846,54 @@ function Home() {
           >
             AIESEC Experience
           </Typography>
-          <Box className="landscape-slideshow">
-            <Box className="slideshow-content">
-              <Card sx={{
-                maxWidth: 800,
-                width: '100%',
-                backgroundColor: 'rgba(0, 0, 0, 0.5)',
-                backdropFilter: 'blur(10px)',
-                border: '1px solid rgba(0, 255, 159, 0.2)',
-                transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                position: 'relative',
-                '&:hover': {
-                  transform: { xs: 'none', sm: 'scale(1.02)' },
-                  boxShadow: '0 0 20px rgba(0, 255, 159, 0.3)'
-                }
-              }}>
+          <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', px: { xs: 2, sm: 4 } }}>
+            <Box sx={{ width: { xs: '100%', sm: '60%', md: '600px' }, height: { xs: '300px', sm: '400px' }, backgroundColor: 'black', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
                 <Suspense fallback={<LoadingPlaceholder />}> 
                   <CardMedia
                     component="img"
-                    height="400"
-                    image={aiesecImages[aiesecIndex].image}
-                    alt={aiesecImages[aiesecIndex].alt}
+                    image={aiesecImages[currentAiesecIndex].image}
+                    alt={aiesecImages[currentAiesecIndex].alt}
                     loading="lazy"
-                    onError={(e) => {
-                      e.target.onerror = null;
-                      e.target.src = `${process.env.PUBLIC_URL}/logo512.png`;
-                    }}
                     sx={{
-                      objectFit: 'contain',
-                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                      padding: '1rem'
+                      objectFit: 'cover',
+                      width: '100%',
+                      height: '100%',
+                      filter: 'none',
+                      transition: 'none'
                     }}
+                    onMouseEnter={() => { setIsAutoPlaying(false); }}
+                    onMouseLeave={() => { setIsAutoPlaying(true); }}
                   />
-                  <Box
-                    sx={{
-                      position: 'absolute',
-                      bottom: 16,
-                      left: 16,
-                      backgroundColor: 'rgba(0, 0, 0, 0.7)',
-                      padding: '8px 16px',
-                      borderRadius: '4px',
-                      backdropFilter: 'blur(4px)'
-                    }}
-                  >
-                    <Typography variant="subtitle1" sx={{ color: '#00ff9f' }}>
-                      {aiesecImages[aiesecIndex].description}
-                    </Typography>
-                  </Box>
                 </Suspense>
-              </Card>
-            </Box>
-            <Box className="slideshow-buttons">
-              <Button 
-                onClick={() => {
-                  setIsAutoPlaying(false);
-                  handlePrevClick('aiesec');
-                }}
-                sx={{ 
+                <Box sx={{
+                  position: 'absolute',
+                  bottom: 16,
+                  left: 16,
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  backdropFilter: 'blur(4px)',
                   color: '#00ff9f',
-                  '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-                }}
-              >
-                Previous
-              </Button>
-              <Button 
-                onClick={() => {
-                  setIsAutoPlaying(false);
-                  handleNextClick('aiesec');
-                }}
-                sx={{ 
-                  color: '#00ff9f',
-                  '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-                }}
-              >
-                Next
-              </Button>
+                  textAlign: 'center'
+                }}>
+                  <Typography variant="subtitle1">
+                    {aiesecImages[currentAiesecIndex].description}
+                  </Typography>
+                </Box>
+              </Box>
+            <Box sx={{ width: { xs: '100%', sm: '40%' }, textAlign: 'left', mt: { xs: 2, sm: 0 }, ml: { sm: 2 }, padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', backdropFilter: 'blur(10px)' }}>
+              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+                I embarked on my AIESEC journey on July 29, 2023, as a Team Member in the Business Development Department.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+                This role became a turning point in my life, helping me develop leadership, communication, and management skills, along with the ability to perform under pressure.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+                In my very first term, I was promoted to Manager of Business Development, and in the following term, I transitioned to IGV Customer Experience Manager, where my team and I were responsible for managing international interns arriving from different countries. Later, I took on the role of Senior Manager for Business Development, where I led and supervised two Team Leads and their respective teams.
+              </Typography>
+              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+                Through every transition and challenge, AIESEC transformed my personality and the way I connect with people, shaping me into a more dynamic and impactful individual.
+              </Typography>
             </Box>
           </Box>
         </Box>

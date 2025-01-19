@@ -1,7 +1,13 @@
 import React from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
+import About from './components/About';
+import Aiesec from './components/Aiesec';
+import Projects from './components/Projects';
+import Certificates from './components/Certificates';
+import { Box } from '@mui/material';
 
 const theme = createTheme({
   palette: {
@@ -74,11 +80,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="App">
-        // Commenting out the Navbar component to prevent overlapping navigation bars
-        // <Navbar />
-        <Home />
-      </div>
+      <Router>
+        <Navbar />
+        <Box sx={{ paddingTop: '64px' }}>  {/* Adjust padding to account for the navbar height */}
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/aiesec' element={<Aiesec />} />
+            <Route path='/projects' element={<Projects />} />
+            <Route path='/certificates' element={<Certificates />} />
+          </Routes>
+        </Box>
+      </Router>
     </ThemeProvider>
   );
 }
