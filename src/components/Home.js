@@ -490,7 +490,7 @@ function Home() {
             }}>
               <Box
                 component="img"
-                src={`${process.env.PUBLIC_URL}/IMG_20231216_183944551.jpg`}
+                src={`${process.env.PUBLIC_URL}/public/IMG_20250119_194625.jpg`}
                 alt="Profile"
                 sx={{
                   width: '100%',
