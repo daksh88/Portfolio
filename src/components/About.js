@@ -1,33 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Container, Typography, Box, Paper } from '@mui/material';
 
 const About = () => {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      try {
-        if (window.scrollY > 0) {
-          setVisible(true);
-        }
-      } catch (error) {
-        console.error('Error in scroll handler:', error);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      try {
-        window.removeEventListener('scroll', handleScroll);
-      } catch (error) {
-        console.error('Error removing scroll event listener:', error);
-      }
-    };
-  }, []);
-
-  // Only render the About section if visible
-  if (!visible) return null;
-
   return (
     <Box id="about">
       <Container>

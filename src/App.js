@@ -80,9 +80,9 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Router>
+      <Router basename="/Portfolio">
         <Navbar />
-        <Box sx={{ paddingTop: '64px' }}>  {/* Adjust padding to account for the navbar height */}
+        <Box sx={{ paddingTop: '64px' }}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />

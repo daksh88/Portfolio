@@ -881,17 +881,17 @@ function Home() {
                   </Typography>
                 </Box>
               </Box>
-            <Box sx={{ width: { xs: '100%', sm: '40%' }, textAlign: 'left', mt: { xs: 2, sm: 0 }, ml: { sm: 2 }, padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', backdropFilter: 'blur(10px)' }}>
-              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+            <Box sx={{ width: { xs: '100%', sm: '40%' }, textAlign: 'centre', mt: { xs: 2, sm: 0 }, ml: { sm: 2 }, padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', backdropFilter: 'blur(10px)' }}>
+              <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
                 I embarked on my AIESEC journey on July 29, 2023, as a Team Member in the Business Development Department.
               </Typography>
-              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+              <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
                 This role became a turning point in my life, helping me develop leadership, communication, and management skills, along with the ability to perform under pressure.
               </Typography>
-              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+              <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
                 In my very first term, I was promoted to Manager of Business Development, and in the following term, I transitioned to IGV Customer Experience Manager, where my team and I were responsible for managing international interns arriving from different countries. Later, I took on the role of Senior Manager for Business Development, where I led and supervised two Team Leads and their respective teams.
               </Typography>
-              <Typography variant="h6" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+              <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
                 Through every transition and challenge, AIESEC transformed my personality and the way I connect with people, shaping me into a more dynamic and impactful individual.
               </Typography>
             </Box>
