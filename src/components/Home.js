@@ -331,6 +331,130 @@ function Home() {
   const visibleCertificates = certificates.slice(certStartIndex, certStartIndex + 3);
   const totalSlides = Math.ceil(certificates.length / 3);
 
+  const [featureImages, setFeatureImages] = useState([
+    {
+      image: `${process.env.PUBLIC_URL}/feature1.png`,
+      alt: 'Feature 1',
+      description: 'Feature 1 Description'
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/feature2.png`,
+      alt: 'Feature 2',
+      description: 'Feature 2 Description'
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/feature3.png`,
+      alt: 'Feature 3',
+      description: 'Feature 3 Description'
+    },
+    {
+      image: `${process.env.PUBLIC_URL}/feature4.png`,
+      alt: 'Feature 4',
+      description: 'Feature 4 Description'
+    }
+  ]);
+  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0);
+  const [isFeatureAutoPlaying, setIsFeatureAutoPlaying] = useState(true);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (isFeatureAutoPlaying) {
+        setCurrentFeatureIndex((prevIndex) => (prevIndex + 1) % featureImages.length);
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isFeatureAutoPlaying]);
+
+  const currentFeatureImage = featureImages[currentFeatureIndex];
+
+  const NewSlideshow = () => {
+    const images = [
+        `${process.env.PUBLIC_URL}/feature1.png`,
+        `${process.env.PUBLIC_URL}/feature2.png`,
+        `${process.env.PUBLIC_URL}/feature3.png`,
+        `${process.env.PUBLIC_URL}/feature4.png`
+    ];
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const autoPlayRef = useRef();
+
+    useEffect(() => {
+        autoPlayRef.current = () => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+            console.log('Current Index:', currentIndex); // Log the current index
+        };
+    }, []);
+
+    useEffect(() => {
+        console.log('Setting up interval'); // Log when the interval is set
+        const interval = setInterval(() => {
+            autoPlayRef.current();
+        }, 3000);
+        return () => {
+            console.log('Clearing interval'); // Log when the interval is cleared
+            clearInterval(interval);
+        };
+    }, []); // Empty dependency array to run only once on mount
+
+    return (
+        <div className="new-slideshow-container" style={{ width: '100%', height: '50vh', overflow: 'hidden' }}>
+            <div className="new-slideshow" style={{ display: 'flex', transition: 'transform 0.5s ease', transform: `translateX(-${currentIndex * 100}%)`, width: `${images.length * 100}%` }}>
+                {images.map((image, index) => (
+                    <img key={index} src={image} alt={`Slide ${index + 1}`} className="new-slideshow-image" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                ))}
+            </div>
+        </div>
+    );
+  };
+
+  const FeatureSlideshow = () => {
+    return (
+      <Box sx={{ width: '100%', height: 'auto', display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'flex-start', px: { xs: 0, sm: 0 } }}>
+        <Box sx={{ width: '100%', height: { xs: '300px', sm: '400px' }, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+            <Suspense fallback={<LoadingPlaceholder />}> 
+              <CardMedia
+                component="img"
+                image={featureImages[currentFeatureIndex].image}
+                alt={featureImages[currentFeatureIndex].alt}
+                loading="lazy"
+                sx={{
+                  objectFit: 'contain',
+                  width: '100%',
+                  height: '100%',
+                  filter: 'none'
+                }}
+                onMouseEnter={() => { setIsFeatureAutoPlaying(false); }}
+                onMouseLeave={() => { setIsFeatureAutoPlaying(true); }}
+              />
+            </Suspense>
+            <Box sx={{
+              position: 'absolute',
+              bottom: 16,
+              left: 16,
+              backgroundColor: 'rgba(0, 0, 0, 0.7)',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              backdropFilter: 'blur(4px)',
+              color: '#00ff9f',
+              textAlign: 'center'
+            }}>
+              <Typography variant="subtitle1">
+                {featureImages[currentFeatureIndex].description}
+              </Typography>
+            </Box>
+          </Box>
+        <Box sx={{ width: { xs: '100%', sm: '40%' }, textAlign: 'center', mt: { xs: 2, sm: 0 }, ml: { sm: 2 }, padding: '16px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '8px', backdropFilter: 'blur(10px)' }}>
+          <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+            This is a feature slideshow.
+          </Typography>
+          <Typography variant="h7" sx={{ color: '#00ff9f', textAlign: 'center' }}>
+            It showcases some of my features.
+          </Typography>
+        </Box>
+      </Box>
+    );
+  };
+
   return (
     <Box>
       {/* Single Navbar */}
@@ -577,7 +701,7 @@ function Home() {
             }}>
               <Box
                 component="img"
-                src={`${process.env.PUBLIC_URL}/IMG_20250119_194625.jpg`}
+                src={`${process.env.PUBLIC_URL}/IMG_20250128_154947.jpg`}
                 alt="Profile"
                 sx={{
                   width: '100%',
@@ -638,6 +762,39 @@ function Home() {
                 🚀 Beyond technical proficiency, I excel in communication, networking, team management, and leadership. Committed to leveraging these skills to contribute effectively to collaborative projects and drive innovation in the tech industry.
               </Typography>
             </Paper>
+          </Container>
+        </Box>
+
+        {/* Featuring Section */}
+        <Box id="featuring" className="featuring-section" sx={{ 
+          minHeight: '80vh', 
+          py: 2, 
+          mt: 2, 
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            backgroundImage: 'radial-gradient(rgba(0, 255, 159, 0.1) 1px, transparent 1px)',
+            backgroundSize: '50px 50px',
+            opacity: 0.5,
+            pointerEvents: 'none'
+          }
+        }}>
+          <Container sx={{ position: 'relative', zIndex: 2, mt: 2 }}>
+            <Box className="featuring-section">
+              <Typography variant="h3" gutterBottom sx={{ 
+                color: '#00ff9f',
+                fontSize: { xs: '2rem', sm: '2.5rem', md: '3rem' },
+                textAlign: 'center'
+              }}>
+                Featuring
+              </Typography>
+              <FeatureSlideshow />
+            </Box>
           </Container>
         </Box>
 
@@ -725,26 +882,6 @@ function Home() {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Button 
-              onClick={() => handlePrevClick('projects')}
-              sx={{ 
-                color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-              }}
-            >
-              Previous
-            </Button>
-            <Button 
-              onClick={() => handleNextClick('projects')}
-              sx={{ 
-                color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-              }}
-            >
-              Next
-            </Button>
-          </Box>
         </Box>
 
         {/* Certificates Section */}
@@ -807,26 +944,6 @@ function Home() {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-            <Button 
-              onClick={() => handlePrevClick('certificates')}
-              sx={{ 
-                color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-              }}
-            >
-              Previous
-            </Button>
-            <Button 
-              onClick={() => handleNextClick('certificates')}
-              sx={{ 
-                color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
-              }}
-            >
-              Next
-            </Button>
-          </Box>
         </Box>
 
         {/* AIESEC Section */}
