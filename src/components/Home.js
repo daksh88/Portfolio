@@ -214,7 +214,7 @@ function Home() {
   ];
 
   const [aiesecImages, setAiesecImages] = useState([
-   {
+    {
       image: `${process.env.PUBLIC_URL}/slide1.jpg`,
       alt: 'AIESEC Experience 1',
       description: 'Global Goal Runs'
