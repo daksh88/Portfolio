@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://daksh88.github.io/Portfolio",
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.3",
     "@mui/icons-material": "^5.15.0",
