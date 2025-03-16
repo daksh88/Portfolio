@@ -11,7 +11,7 @@ import PhoneIcon from '@mui/icons-material/Phone';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import MenuIcon from '@mui/icons-material/Menu';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import OptimizedImage from './OptimizedImage';
 
 const CardMedia = React.lazy(() => import('@mui/material/CardMedia'));
 
@@ -404,6 +404,24 @@ function Home() {
     };
 
     preloadNextImage();
+  }, [currentAiesecIndex, aiesecImages]);
+
+  useEffect(() => {
+    const preloadNextImages = async () => {
+      const nextIndex = (currentAiesecIndex + 1) % aiesecImages.length;
+      const nextNextIndex = (currentAiesecIndex + 2) % aiesecImages.length;
+
+      try {
+        await Promise.all([
+          preloadImage(aiesecImages[nextIndex].image),
+          preloadImage(aiesecImages[nextNextIndex].image)
+        ]);
+      } catch (error) {
+        console.error('Error preloading images:', error);
+      }
+    };
+
+    preloadNextImages();
   }, [currentAiesecIndex, aiesecImages]);
 
   const currentAiesecImage = aiesecImages[currentAiesecIndex];
@@ -1158,23 +1176,16 @@ function Home() {
                       <Typography sx={{ color: '#00ff9f' }}>Loading...</Typography>
                     </Box>
                   }>
-                    <CardMedia
-                      component="img"
-                      image={aiesecImages[currentAiesecIndex].image}
+                    <OptimizedImage
+                      src={aiesecImages[currentAiesecIndex].image}
                       alt={aiesecImages[currentAiesecIndex].alt}
-                      loading="lazy"
                       sx={{
                         objectFit: 'cover',
                         width: '100%',
                         height: '100%',
                         filter: 'none',
                         willChange: 'transform',
-                        transition: 'opacity 0.3s ease-in-out',
                       }}
-                      onLoad={(e) => {
-                        e.target.style.opacity = 1;
-                      }}
-                      style={{ opacity: 0 }} // Start with 0 opacity
                       onMouseEnter={() => setIsAutoPlaying(false)}
                       onMouseLeave={() => setIsAutoPlaying(true)}
                     />
