@@ -1162,14 +1162,19 @@ function Home() {
                       component="img"
                       image={aiesecImages[currentAiesecIndex].image}
                       alt={aiesecImages[currentAiesecIndex].alt}
-                      loading="eager"
+                      loading="lazy"
                       sx={{
                         objectFit: 'cover',
                         width: '100%',
                         height: '100%',
                         filter: 'none',
                         willChange: 'transform',
+                        transition: 'opacity 0.3s ease-in-out',
                       }}
+                      onLoad={(e) => {
+                        e.target.style.opacity = 1;
+                      }}
+                      style={{ opacity: 0 }} // Start with 0 opacity
                       onMouseEnter={() => setIsAutoPlaying(false)}
                       onMouseLeave={() => setIsAutoPlaying(true)}
                     />
