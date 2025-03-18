@@ -1,11 +1,13 @@
 import React from 'react';
 import { ThemeProvider, createTheme, CssBaseline } from '@mui/material';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import About from './components/About';
 import PESE from './components/PESE';
-import Contact from './components/Contact';  // Add this import
+import Contact from './components/Contact';
+import MyIntroduction from './components/MyIntroduction';
+import Assignments from './components/Assignments';
 import { Box } from '@mui/material';
 import emailjs from '@emailjs/browser';
 
@@ -80,17 +82,19 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <Router basename={process.env.PUBLIC_URL}>
         <Navbar />
         <Box>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/about' element={<About />} />
             <Route path='/pese' element={<PESE />} />
-            <Route path='/contact' element={<Contact />} />  {/* Add this route */}
+            <Route path='/contact' element={<Contact />} />
+            <Route path="/pese/my-introduction" element={<MyIntroduction />} />
+            <Route path="/pese/assignments" element={<Assignments />} />
           </Routes>
         </Box>
-      </BrowserRouter>
+      </Router>
     </ThemeProvider>
   );
 }
