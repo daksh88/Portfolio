@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Box, Container, Typography, Paper, IconButton } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 
 function Assignments() {
   const navigate = useNavigate();
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   
   const questions = [
     {
@@ -28,6 +31,14 @@ function Assignments() {
                Resume Writing: If I were to make a resume, it would include my experience as a football player, soldier, ping pong champion, shrimp boat captain, and runner. The movie teaches that everyone’s journey is unique, and even if your experiences seem different, they can still make a great story—just like a well-structured resume highlights different skills and achievements.`
     }
   ];
+
+  const handleNext = () => {
+    setCurrentQuestionIndex((prev) => (prev + 1) % questions.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentQuestionIndex((prev) => (prev - 1 + questions.length) % questions.length);
+  };
 
   return (
     <Box sx={{ 
@@ -75,19 +86,89 @@ function Assignments() {
           Film Analysis: Forrest Gump (1994)
         </Typography>
 
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-          {questions.map((item, index) => (
+        {/* New Side-by-Side Layout */}
+        <Box sx={{
+          display: 'flex',
+          flexDirection: { xs: 'column', md: 'row' }, // Stack on mobile, side-by-side on desktop
+          gap: 4,
+          alignItems: 'flex-start',
+          justifyContent: 'center',
+        }}>
+          {/* Image Section */}
+          <Box
+            sx={{
+              width: { xs: '100%', md: '35%' },
+              maxWidth: { xs: '400px', md: 'none' },
+              margin: { xs: '0 auto 2rem auto', md: '0' },
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: '10px',
+              boxShadow: '0 4px 20px rgba(0, 255, 159, 0.2)',
+              border: '1px solid rgba(0, 255, 159, 0.2)',
+              flexShrink: 0,
+              '&::before': {
+                content: '""',
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundColor: 'rgba(10, 25, 47, 0.2)',
+                zIndex: 1,
+                transition: 'opacity 0.3s ease',
+                opacity: 0,
+              },
+              '&:hover::before': {
+                opacity: 1,
+              },
+              '&:hover img': {
+                transform: 'scale(1.05)',
+              }
+            }}
+          >
+            <Box
+              component="img"
+              src="https://m.media-amazon.com/images/M/MV5BNWIwODRlZTUtY2U3ZS00Yzg1LWJhNzYtMmZiYmEyNmU1NjMzXkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_.jpg"
+              alt="Forrest Gump Movie Poster"
+              sx={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          </Box>
+
+          {/* Questions Section */}
+          <Box sx={{ 
+            position: 'relative',
+            width: { xs: '100%', md: '65%' },
+            minHeight: '300px'
+          }}>
+            <IconButton 
+              onClick={handlePrev}
+              sx={{
+                position: 'absolute',
+                left: { xs: '-20px', md: '-30px' },
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: '#00ff9f',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)'
+                }
+              }}
+            >
+              <ArrowBackIosIcon />
+            </IconButton>
+
             <Paper 
-              key={index}
               sx={{
                 p: 4,
                 backgroundColor: 'rgba(0, 0, 0, 0.3)',
                 borderRadius: '10px',
                 border: '1px solid rgba(0, 255, 159, 0.2)',
-                transition: 'transform 0.3s ease',
-                '&:hover': {
-                  transform: 'translateY(-5px)'
-                }
+                transition: 'all 0.3s ease',
+                opacity: 1,
               }}
             >
               <Typography 
@@ -98,7 +179,7 @@ function Assignments() {
                   fontSize: { xs: '1.2rem', sm: '1.4rem' }
                 }}
               >
-                Question {index + 1}:
+                Question {currentQuestionIndex + 1}:
               </Typography>
               <Typography 
                 sx={{ 
@@ -108,7 +189,7 @@ function Assignments() {
                   fontWeight: 500
                 }}
               >
-                {item.question}
+                {questions[currentQuestionIndex].question}
               </Typography>
               <Typography 
                 sx={{ 
@@ -118,10 +199,36 @@ function Assignments() {
                   textAlign: 'justify'
                 }}
               >
-                {item.answer}
+                {questions[currentQuestionIndex].answer}
               </Typography>
             </Paper>
-          ))}
+
+            <IconButton 
+              onClick={handleNext}
+              sx={{
+                position: 'absolute',
+                right: { xs: '-20px', md: '-30px' },
+                top: '50%',
+                transform: 'translateY(-50%)',
+                color: '#00ff9f',
+                '&:hover': {
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)'
+                }
+              }}
+            >
+              <ArrowForwardIosIcon />
+            </IconButton>
+
+            <Typography 
+              sx={{ 
+                color: '#00ff9f',
+                textAlign: 'center',
+                mt: 2
+              }}
+            >
+              {currentQuestionIndex + 1} / {questions.length}
+            </Typography>
+          </Box>
         </Box>
       </Container>
     </Box>
