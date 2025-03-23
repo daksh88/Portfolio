@@ -38,25 +38,7 @@ const About = () => {
                 color: '#e6f1ff'
               }}
             >
-              I’m Daksh Nautiyal, a 3rd-year B.Tech CSE student at Graphic Era Hill
-               University, deeply passionate about tech and development. My skills 
-               include frontend development with JavaScript, React, and responsive 
-               web design, along with a strong foundation in C, C++, and Java. I 
-               love building projects from scratch, like my portfolio website, which 
-               showcases my work, certificates, and AIESEC journey with sleek transitions 
-               and a modern design. My development journey isn't just limited to frontend—I’ve 
-               also explored backend development with Node.js and want to master it completely. 
-               I’ve worked on some exciting projects, including an Air Draw application using 
-               OpenCV and Mediapipe, where I optimized the drawing functionality for better 
-               control, and a Text-to-Speech & Speech-to-Text translator built with Python 
-               and Google APIs. In e-commerce, I first built a React-based website with a 
-               server.js backend, skipping MongoDB, and also experimented with WordPress, 
-               where I manually implemented product cards and later added an ‘Add to Cart’ 
-               button. Currently, I’m a Web Development Intern at Digital Nomadians, a
-                marketing agency focused on SEO and social media marketing. My team there 
-                is quite a mix—there’s a hilarious guy who always does something funny, a
-                 coder, an SEO specialist, a social media expert, and an intern who barely 
-                 shows up.
+              I'm Daksh Nautiyal, a passionate Computer Science Engineering student at Graphic Era Hill University (2022-2026), based in Dehradun, Uttarakhand. I'm an aspiring Software Engineer with a love for full-stack development, cloud computing, and DevOps, always chasing scalable and user-friendly tech solutions. Whether it's coding a sleek React e-commerce platform or building a hand-gesture volume control system with Python, I thrive on turning ideas into reality.
             </Typography>
             <Typography 
               paragraph
@@ -65,18 +47,16 @@ const About = () => {
                 color: '#e6f1ff'
               }}
             >
-              Beyond tech, my AIESEC journey has been nothing short of a rollercoaster. 
-              It all started when I became an Organizing Committee Member for Global 
-              Village 2023, followed by Global Goal Runs 2023. From there, I stepped into 
-              leadership roles, becoming Core Committee Vice President for Partnership 
-              Development and Creatives at Youth Speak Forum 2024, and later, Core Committee 
-              President for Global Village 2024. Alongside these, I held multiple Senior Manager
-               roles, first in Business Development, then in Incoming Global Volunteer Customer
-                Experience, and once again in Business Development. My journey in AIESEC taught
-                 me a lot about leadership, networking, and handling high-pressure situations 
-                 while working with diverse teams. It’s been an incredible experience that 
-                 shaped my personality, giving me confidence in both professional and personal
-                  spaces.
+              I've got hands-on experience as a Web Development Intern at Digital Nomadians, where I crafted responsive websites, integrated payment gateways, and boosted SEO for clients. My projects—like a WordPress e-commerce site, a Pomodoro-style 25+5 Clock, and a Text-to-Speech Translator—showcase my skills in React.js, Node.js, Python, and more. I'm comfortable with languages like C, C++, JavaScript, and Java, and I've dabbled in AI/ML with tools like OpenCV and TensorFlow.
+            </Typography>
+            <Typography 
+              paragraph
+              sx={{ 
+                fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' },
+                color: '#e6f1ff'
+              }}
+            >
+              Beyond tech, I've served as Senior Manager at AIESEC in Dehradun, securing partnerships, managing teams, and organizing events like Global Village 2024. I'm all about continuous learning, exploring new trends, and building stuff that makes a difference. Check out my work at <a href="daksh88.github.io/portfolio-website/">Portfolio</a> or connect with me on LinkedIn—let's create something awesome together!
             </Typography>
           </Paper>
         </Box>

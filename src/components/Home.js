@@ -31,26 +31,30 @@ const LoadingPlaceholder = React.memo(() => (
 
 class Particle {
   constructor(canvas) {
-    this.characters = "01";
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.fontSize = 10;
-    this.text = this.characters.charAt(Math.floor(Math.random() * this.characters.length));
-    this.speed = 0.5;
+    this.size = Math.random() * 2 + 1;
+    this.speedX = (Math.random() - 0.5) * 0.5;
+    this.speedY = (Math.random() - 0.5) * 0.5;
+    this.connections = [];
+    this.maxConnections = 5;
+    this.connectionDistance = 100;
+  }
+
+  update(canvasWidth, canvasHeight) {
+    this.x += this.speedX;
+    this.y += this.speedY;
+
+    // Bounce off edges
+    if (this.x < 0 || this.x > canvasWidth) this.speedX *= -1;
+    if (this.y < 0 || this.y > canvasHeight) this.speedY *= -1;
   }
 
   draw(ctx) {
-    ctx.fillStyle = '#00ff9f10';
-    ctx.font = this.fontSize + 'px monospace';
-    ctx.fillText(this.text, this.x, this.y);
-  }
-
-  update(canvasHeight, canvasWidth) {
-    if (this.y > canvasHeight) {
-      this.y = 0;
-      this.x = Math.random() * canvasWidth;
-    }
-    this.y += this.speed;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = '#00ff9f';
+    ctx.fill();
   }
 }
 
@@ -156,23 +160,43 @@ function Home() {
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Create particles after canvas size is set
-    const particles = new Array(25).fill(null).map(() => new Particle(canvas));
-
+    // Create fewer particles for better performance
+    const particles = new Array(50).fill(null).map(() => new Particle(canvas));
     let animationFrameId;
     let isActive = true;
+
+    const drawConnections = (particles) => {
+      particles.forEach((particle, i) => {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[j].x - particle.x;
+          const dy = particles[j].y - particle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < particle.connectionDistance) {
+            const opacity = (1 - distance / particle.connectionDistance) * 0.5;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(0, 255, 159, ${opacity})`;
+            ctx.lineWidth = 0.5;
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      });
+    };
 
     const animate = () => {
       if (!isActive) return;
 
-      ctx.fillStyle = 'rgba(10, 25, 47, 0.05)';
+      ctx.fillStyle = 'rgba(10, 25, 47, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       particles.forEach(particle => {
+        particle.update(canvas.width, canvas.height);
         particle.draw(ctx);
-        particle.update(canvas.height, canvas.width);
       });
 
+      drawConnections(particles);
       animationFrameId = requestAnimationFrame(animate);
     };
 
