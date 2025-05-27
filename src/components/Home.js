@@ -69,7 +69,6 @@ function Home() {
   const autoPlayRef = useRef();
   const [videoHovered, setVideoHovered] = useState({ left: false, right: false });
 
-  // 1. Optimize image loading and reduce re-renders
   const [images, setImages] = useState({
     featured: [],
     aiesec: [],
@@ -153,15 +152,15 @@ function Home() {
     if (!ctx) return;
 
     const setCanvasSize = () => {
-      canvas.width = canvas.clientWidth;
-      canvas.height = canvas.clientHeight;
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
     };
 
     setCanvasSize();
     window.addEventListener('resize', setCanvasSize);
 
-    // Create fewer particles for better performance
-    const particles = new Array(50).fill(null).map(() => new Particle(canvas));
+    // Increase number of particles for fuller coverage
+    const particles = new Array(100).fill(null).map(() => new Particle(canvas));
     let animationFrameId;
     let isActive = true;
 
@@ -188,6 +187,7 @@ function Home() {
     const animate = () => {
       if (!isActive) return;
 
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = 'rgba(10, 25, 47, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -472,6 +472,28 @@ function Home() {
     },
   ];
 
+  const handleTouchScroll = (e) => {
+    const container = e.currentTarget;
+    const touchDelta = container.scrollLeft;
+    requestAnimationFrame(() => {
+      container.scrollTo({
+        left: touchDelta,
+        behavior: 'smooth'
+      });
+    });
+  };
+
+  const handleScroll = (direction, containerId) => {
+    const container = document.getElementById(containerId);
+    if (container) {
+      const scrollAmount = direction === 'left' ? -container.offsetWidth : container.offsetWidth;
+      container.scrollBy({
+        left: scrollAmount,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <Box>
       {/* Single Navbar */}
@@ -590,7 +612,13 @@ function Home() {
       </Drawer>
 
       {/* Main Content */}
-      <Box component="main" sx={{ pt: '6px', pb: 0, px: 0 }}>
+      <Box component="main" sx={{ 
+        position: 'relative',
+        zIndex: 1, // Ensure content is above canvas
+        pt: '6px', 
+        pb: 0, 
+        px: 0 
+      }}>
         {/* Home Section */}
         <Box id="home" sx={{ 
           minHeight: '100vh', 
@@ -603,13 +631,13 @@ function Home() {
           <canvas
             ref={canvasRef}
             style={{
-              position: 'absolute',
+              position: 'fixed', // Change from 'absolute' to 'fixed'
               top: 0,
               left: 0,
               width: '100%',
               height: '100%',
-              zIndex: 1,
-              opacity: 0.5
+              zIndex: 0, // Change from 1 to 0
+              opacity: 0.3  // Reduce opacity slightly
             }}
           />
           <Container sx={{ 
@@ -958,24 +986,16 @@ function Home() {
           }}>
             Mini Projects
           </Typography>
-          <Grid container spacing={3} sx={{ mt: 2, px: { xs: 2, sm: 3, md: 4 } }}>
-            {getVisibleItems(projects, projectStartIndex).map((project, index) => (
-              <Grid item xs={12} sm={12} md={4} key={index}>
+          
+          <Grid container spacing={3} sx={{ px: 2 }}>
+            {projects.slice(projectStartIndex, projectStartIndex + 3).map((project, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card sx={{
                   height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(0, 255, 159, 0.2)',
-                  transition: 'all 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0 0 20px rgba(0, 255, 159, 0.3)',
-                    '& .MuiCardMedia-root': {
-                      filter: 'brightness(1.1)'
-                    }
-                  }
+                  transition: 'transform 0.3s ease'
                 }}>
                   <Suspense fallback={<LoadingPlaceholder />}>
                     <CardMedia
@@ -1033,13 +1053,28 @@ function Home() {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            mt: 4,
+            gap: 2
+          }}>
             <Button 
               onClick={() => handlePrevClick('projects')}
               sx={{ 
                 color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
+                borderColor: '#00ff9f',
+                px: 4,
+                py: 1,
+                borderRadius: '8px',
+                '&:hover': { 
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
               }}
+              variant="outlined"
             >
               Previous
             </Button>
@@ -1047,8 +1082,17 @@ function Home() {
               onClick={() => handleNextClick('projects')}
               sx={{ 
                 color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
+                borderColor: '#00ff9f',
+                px: 4,
+                py: 1,
+                borderRadius: '8px',
+                '&:hover': { 
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
               }}
+              variant="outlined"
             >
               Next
             </Button>
@@ -1056,7 +1100,7 @@ function Home() {
         </Box>
 
         {/* Certificates Section */}
-        <Box sx={{ mt: 4, mb: 4 }}>
+        <Box id="certificates" sx={{ mt: 4, mb: 4 }}>
           <Typography variant="h3" gutterBottom sx={{ 
             textAlign: 'center', 
             color: '#00ff9f',
@@ -1064,21 +1108,16 @@ function Home() {
           }}>
             Certificates
           </Typography>
-          <Grid container spacing={3} sx={{ mt: 2, px: { xs: 2, sm: 3, md: 4 } }}>
-            {visibleCertificates.map((cert, index) => (
-              <Grid item xs={12} sm={12} md={4} key={index}>
+          
+          <Grid container spacing={3} sx={{ px: 2 }}>
+            {certificates.slice(certStartIndex, certStartIndex + 3).map((cert, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <Card sx={{
                   height: '100%',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.7)',
                   backdropFilter: 'blur(10px)',
                   border: '1px solid rgba(0, 255, 159, 0.2)',
-                  transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
-                  '&:hover': {
-                    transform: 'scale(1.02)',
-                    boxShadow: '0 0 20px rgba(0, 255, 159, 0.3)'
-                  }
+                  transition: 'transform 0.3s ease'
                 }}>
                   <Suspense fallback={<LoadingPlaceholder />}>
                     <CardMedia
@@ -1115,13 +1154,28 @@ function Home() {
               </Grid>
             ))}
           </Grid>
-          <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+
+          <Box sx={{ 
+            display: 'flex', 
+            justifyContent: 'center', 
+            mt: 4,
+            gap: 2
+          }}>
             <Button 
               onClick={() => handlePrevClick('certificates')}
               sx={{ 
                 color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
+                borderColor: '#00ff9f',
+                px: 4,
+                py: 1,
+                borderRadius: '8px',
+                '&:hover': { 
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
               }}
+              variant="outlined"
             >
               Previous
             </Button>
@@ -1129,8 +1183,17 @@ function Home() {
               onClick={() => handleNextClick('certificates')}
               sx={{ 
                 color: '#00ff9f',
-                '&:hover': { backgroundColor: 'rgba(0, 255, 159, 0.1)' }
+                borderColor: '#00ff9f',
+                px: 4,
+                py: 1,
+                borderRadius: '8px',
+                '&:hover': { 
+                  backgroundColor: 'rgba(0, 255, 159, 0.1)',
+                  transform: 'translateY(-2px)'
+                },
+                transition: 'all 0.3s ease'
               }}
+              variant="outlined"
             >
               Next
             </Button>
@@ -1158,18 +1221,21 @@ function Home() {
             width: '100%', 
             height: 'auto', 
             display: 'flex', 
-            flexDirection: { xs: 'column', md: 'row' }, // Changed breakpoint from 'sm' to 'md'
+            flexDirection: { xs: 'column', md: 'row' },
             alignItems: 'center', 
             justifyContent: 'space-between', 
-            px: { xs: 2, md: 4 } // Changed breakpoint from 'sm' to 'md'
+            px: { xs: 2, md: 4 },
+            gap: { xs: 4, md: 6 }
           }}>
             <Box sx={{ 
-              width: { xs: '100%', md: '60%' }, // Changed breakpoint from 'sm' to 'md'
-              height: { xs: '400px', md: '400px' }, // Made mobile height consistent
+              width: { xs: '100%', md: '60%' },
+              height: { xs: '300px', sm: '400px', md: '450px' },
               backgroundColor: 'black', 
               position: 'relative', 
               overflow: 'hidden',
-              mb: { xs: 4, md: 0 } // Added margin bottom for mobile
+              borderRadius: '10px',
+              border: '1px solid rgba(0, 255, 159, 0.2)',
+              mb: { xs: 4, md: 0 }
             }}>
               <AnimatePresence mode="wait" initial={false}>
                 <motion.div
@@ -1204,11 +1270,16 @@ function Home() {
                       src={aiesecImages[currentAiesecIndex].image}
                       alt={aiesecImages[currentAiesecIndex].alt}
                       sx={{
-                        objectFit: 'cover',
                         width: '100%',
                         height: '100%',
+                        objectFit: 'cover',
+                        objectPosition: 'center',
                         filter: 'none',
                         willChange: 'transform',
+                        transition: 'transform 0.3s ease-in-out',
+                        '&:hover': {
+                          transform: 'scale(1.05)'
+                        }
                       }}
                       onMouseEnter={() => setIsAutoPlaying(false)}
                       onMouseLeave={() => setIsAutoPlaying(true)}
@@ -1222,13 +1293,16 @@ function Home() {
                     <Box sx={{
                       position: 'absolute',
                       bottom: 16,
-                      left: 16,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
                       backgroundColor: 'rgba(0, 0, 0, 0.7)',
                       padding: '8px 16px',
                       borderRadius: '4px',
                       backdropFilter: 'blur(4px)',
                       color: '#00ff9f',
-                      textAlign: 'center'
+                      textAlign: 'center',
+                      width: 'auto',
+                      maxWidth: '90%'
                     }}>
                       <Typography variant="subtitle1">
                         {aiesecImages[currentAiesecIndex].description}

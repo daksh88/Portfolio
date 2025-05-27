@@ -341,6 +341,192 @@ function PESE() {
                             Declaration
           </Typography>
         </Box>
+
+        {/* Week 5 Section */}
+        <Box sx={{ 
+          mt: 8,
+          p: 4,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          borderRadius: '10px',
+          border: '1px solid rgba(0, 255, 159, 0.2)'
+        }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+              textAlign: 'center',
+              mb: 3
+            }}
+          >
+            Week 5
+          </Typography>
+          
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+              mb: 2,
+              textAlign: 'center'
+            }}
+          >
+            Group Discussion
+          </Typography>
+
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: '#8892b0',
+              fontSize: { xs: '1rem', sm: '1.1rem' },
+              lineHeight: 1.7,
+              textAlign: 'justify'
+            }}
+          >
+            This week, I delved into the dynamics of group discussions and collaborative problem-solving. Working with a diverse team, we explored various approaches to tackle specific challenges through structured brainstorming sessions. The experience taught me how to effectively contribute ideas while building upon others' perspectives, leading to comprehensive solutions. Through this process, I learned the importance of active listening, constructive feedback, and the power of collective thinking in reaching innovative conclusions.
+          </Typography>
+        </Box>
+
+        {/* Week 6 Section */}
+        <Box sx={{ 
+          mt: 8,
+          p: 4,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          borderRadius: '10px',
+          border: '1px solid rgba(0, 255, 159, 0.2)'
+        }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+              textAlign: 'center',
+              mb: 3
+            }}
+          >
+            Week 6
+          </Typography>
+          
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+              mb: 2,
+              textAlign: 'center'
+            }}
+          >
+            Interactive Group Discussion
+          </Typography>
+
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: '#8892b0',
+              fontSize: { xs: '1rem', sm: '1.1rem' },
+              lineHeight: 1.7,
+              textAlign: 'justify'
+            }}
+          >
+            This week, we engaged in dynamic group discussions covering diverse topics. The sessions were structured as interactive dialogues where participants shared their unique perspectives and challenged each other's viewpoints constructively. Through these discussions, I developed skills in articulating my thoughts clearly while respectfully engaging with differing opinions. The experience enhanced my ability to think critically, respond thoughtfully, and find common ground even when perspectives varied. This collaborative environment fostered both intellectual growth and improved communication skills.
+          </Typography>
+        </Box>
+
+        {/* Week 7 Section */}
+        <Box sx={{ 
+          mt: 8,
+          p: 4,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          borderRadius: '10px',
+          border: '1px solid rgba(0, 255, 159, 0.2)'
+        }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+              textAlign: 'center',
+              mb: 3
+            }}
+          >
+            Week 7
+          </Typography>
+          
+          <Typography 
+            variant="h5" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.25rem', sm: '1.5rem', md: '1.75rem' },
+              mb: 2,
+              textAlign: 'center'
+            }}
+          >
+            Interview Preparation and Behavioral Assessment
+          </Typography>
+
+          <Typography 
+            variant="body1" 
+            sx={{ 
+              color: '#8892b0',
+              fontSize: { xs: '1rem', sm: '1.1rem' },
+              lineHeight: 1.7,
+              textAlign: 'justify'
+            }}
+          >
+            This week marked a significant milestone in our professional development as we delved deep into interview preparation techniques under the guidance of our professor. The comprehensive sessions covered various aspects of interviewing, with a particular focus on behavioral questions and professional introductions. We learned the STAR method (Situation, Task, Action, Result) for structuring responses to behavioral questions, practiced crafting compelling personal narratives, and developed strategies for articulating our experiences effectively.
+            <br></br>
+            <br></br>
+            The training encompassed mock interviews, real-time feedback sessions, and detailed analysis of common interview scenarios. We explored techniques for maintaining composure under pressure, demonstrating cultural fit, and effectively communicating our technical expertise. This immersive learning experience not only enhanced our interview skills but also boosted our confidence in presenting ourselves professionally in various corporate settings.
+          </Typography>
+        </Box>
+
+        {/* Summary Video Section */}
+        <Box sx={{ 
+          mt: 8,
+          p: 4,
+          backgroundColor: 'rgba(0, 0, 0, 0.3)',
+          borderRadius: '10px',
+          border: '1px solid rgba(0, 255, 159, 0.2)'
+        }}>
+          <Typography 
+            variant="h4" 
+            sx={{ 
+              color: '#00ff9f',
+              fontSize: { xs: '1.75rem', sm: '2rem', md: '2.5rem' },
+              textAlign: 'center',
+              mb: 3
+            }}
+          >
+            Summary Video
+          </Typography>
+
+          <Box sx={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            mt: 4
+          }}>
+            <Box
+              component="video"
+              controls
+              sx={{
+                width: '100%',
+                maxWidth: '800px',
+                height: 'auto',
+                borderRadius: '10px',
+                border: '1px solid rgba(0, 255, 159, 0.2)',
+                backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                transition: 'transform 0.3s ease',
+                '&:hover': {
+                  transform: 'scale(1.02)'
+                }
+              }}
+            >
+              <source src={`${process.env.PUBLIC_URL}/videos/Last.mp4`} type="video/mp4" />
+              Your browser does not support the video tag.
+            </Box>
+          </Box>
+        </Box>
       </Container>
     </Box>
   );
