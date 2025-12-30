@@ -2,6 +2,7 @@
   "name": "daksh-portfolio",
   "version": "1.0.0",
   "description": "Professional animated portfolio of Daksh Nautiyal built with React",
+  "homepage": "https://daksh88.github.io/Portfolio",
   "private": true,
   "dependencies": {
     "aos": "^2.3.4",
@@ -20,7 +21,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -38,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
