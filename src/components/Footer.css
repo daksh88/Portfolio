@@ -1,0 +1,16 @@
+.footer {
+  background: rgba(15, 23, 42, 0.8);
+  border-top: 1px solid rgba(99, 102, 241, 0.1);
+  padding: 2rem;
+  text-align: center;
+}
+
+.footer p {
+  color: #64748b;
+  margin: 0.5rem 0;
+}
+
+.footer .heart {
+  color: #ec4899;
+  margin: 0 0.3rem;
+}
