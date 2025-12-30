@@ -6,6 +6,7 @@ import './Projects.css';
 const Projects = () => {
   const ref = useScrollAnimation();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const publicUrl = process.env.PUBLIC_URL;
 
   const projects = [
     {
@@ -14,7 +15,7 @@ const Projects = () => {
       tech: ['TypeScript', 'SQLite', 'Node.js'],
       liveLink: null,
       githubLink: 'https://github.com/daksh88/AI-Agent-for-Company-Invoices',
-      image: '/assets/images/p1.jpg'
+      image: `${publicUrl}/assets/images/p1.jpg`
     },
     {
       name: 'Arithmetic Code Optimizer',
@@ -22,7 +23,7 @@ const Projects = () => {
       tech: ['Python', 'HTML', 'CSS', 'JavaScript'],
       liveLink: 'https://code-optimizer-jalk.onrender.com',
       githubLink: 'https://github.com/daksh88/Code-Optimizer',
-      image: '/assets/images/p2.jpg'
+      image: `${publicUrl}/assets/images/p2.jpg`
     },
     {
       name: 'Process Manager',
@@ -30,7 +31,7 @@ const Projects = () => {
       tech: ['Python', 'HTML', 'CSS', 'JavaScript'],
       liveLink: null,
       githubLink: 'https://github.com/daksh88/Process-Manager',
-      image: '/assets/images/p3.webp'
+      image: `${publicUrl}/assets/images/p3.webp`
     },
     {
       name: 'Motion Gesture Volume Controller',
@@ -38,7 +39,7 @@ const Projects = () => {
       tech: ['Python', 'OpenCV', 'Mediapipe'],
       liveLink: null,
       githubLink: 'https://github.com/daksh88/Motion-Gesture-Volume-Controller',
-      image: '/assets/images/p4.jpg'
+      image: `${publicUrl}/assets/images/p4.jpg`
     },
     {
       name: '25-5 Clock (Pomodoro Timer)',
@@ -46,7 +47,7 @@ const Projects = () => {
       tech: ['JavaScript', 'HTML', 'CSS'],
       liveLink: 'https://daksh88.github.io/25-5-Clock/',
       githubLink: 'https://github.com/daksh88/25-5-Clock',
-      image: '/assets/images/p5.jpg'
+      image: `${publicUrl}/assets/images/p5.jpg`
     },
     {
       name: 'The Project Shunya (E-commerce)',
@@ -54,7 +55,7 @@ const Projects = () => {
       tech: ['WordPress', 'HTML', 'CSS', 'JavaScript', 'SEO'],
       liveLink: 'https://theprojectshunya.com/',
       githubLink: null,
-      image: '/assets/images/p6.jpg'
+      image: `${publicUrl}/assets/images/p6.jpg`
     }
   ];
 

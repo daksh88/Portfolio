@@ -6,77 +6,78 @@ import './Gallery.css';
 const Gallery = () => {
   const ref = useScrollAnimation();
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const publicUrl = process.env.PUBLIC_URL;
 
   const galleryItems = [
     {
       id: 1,
-      image: '/assets/images/IMG-20250906-WA0014.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0014.jpg`,
       title: 'Team Leadership',
       description: 'Leading and mentoring teams with vision'
     },
     {
       id: 2,
-      image: '/assets/images/IMG-20250906-WA0023.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0023.jpg`,
       title: 'Professional Growth',
       description: 'Continuous development and learning journey'
     },
     {
       id: 3,
-      image: '/assets/images/IMG-20250906-WA0025.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0025.jpg`,
       title: 'Collaboration',
       description: 'Working seamlessly with diverse teams'
     },
     {
       id: 4,
-      image: '/assets/images/IMG-20250906-WA0030.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0030.jpg`,
       title: 'Leadership Excellence',
       description: 'Driving initiatives and inspiring others'
     },
     {
       id: 5,
-      image: '/assets/images/IMG-20250906-WA0031.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0031.jpg`,
       title: 'Team Recognition',
       description: 'Achievements and milestones celebrated'
     },
     {
       id: 6,
-      image: '/assets/images/IMG-20250906-WA0034.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0034.jpg`,
       title: 'Professional Network',
       description: 'Building meaningful connections worldwide'
     },
     {
       id: 7,
-      image: '/assets/images/IMG-20250906-WA0036.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0036.jpg`,
       title: 'Operational Excellence',
       description: 'Managing projects and delivering results'
     },
     {
       id: 8,
-      image: '/assets/images/WhatsApp Image 2025-09-06 at 12.07.37_ba86bbd2.jpg',
+      image: `${publicUrl}/assets/images/WhatsApp Image 2025-09-06 at 12.07.37_ba86bbd2.jpg`,
       title: 'Team Bond',
       description: 'Strong relationships built through leadership'
     },
     {
       id: 9,
-      image: '/assets/images/IMG-20250906-WA0011.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0011.jpg`,
       title: 'Leadership Impact',
       description: 'Creating positive change in teams'
     },
     {
       id: 10,
-      image: '/assets/images/IMG-20250906-WA0020.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0020.jpg`,
       title: 'Professional Achievement',
       description: 'Recognized for excellence and dedication'
     },
     {
       id: 11,
-      image: '/assets/images/IMG-20250906-WA0022.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0022.jpg`,
       title: 'Team Excellence',
       description: 'Building high-performing teams'
     },
     {
       id: 12,
-      image: '/assets/images/IMG-20250906-WA0021.jpg',
+      image: `${publicUrl}/assets/images/IMG-20250906-WA0021.jpg`,
       title: 'Leadership Legacy',
       description: 'Mentoring and empowering future leaders'
     }

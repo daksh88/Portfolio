@@ -113,7 +113,7 @@ const Hero = () => {
 
           <div className="hero-image">
             <div className="floating-card" ref={floatingRef}>
-              <img src="/assets/images/1.jpeg" alt="Creative Developer" className="floating-image" />
+              <img src={`${process.env.PUBLIC_URL}/assets/images/1.jpeg`} alt="Creative Developer" className="floating-image" />
             </div>
           </div>
         </div>
